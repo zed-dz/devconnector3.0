@@ -1,0 +1,10 @@
+{
+  "workbench.colorCustomizations": {
+    "titleBar.inactiveBackground": "#b52e3199",
+    "titleBar.inactiveForeground": "#e7e7e799",
+    "editor.selectionBackground": "#135564",
+    "gitDecoration.ignoredResourceForeground": "#706e6e",
+    "tab.activeBackground": "#4422cc",
+    "tab.unfocusedActiveBorder": "#fff0"
+  }
+}
