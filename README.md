@@ -37,6 +37,14 @@ npm run build
 
 ## App Info
 
+### UML ( unified modeling language )
+
+Use case && class diagram && sequence diagram
+
+## Report
+
+Explain visually how the site works!
+
 ### Project Implementation by
 
 Hammou amine & Ilyes Saidoun
