@@ -3,16 +3,21 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
-import { getCurrentProfile } from './../../actions/profile';
-
+import { getCurrentProfile } from '../../actions/profile';
+import { getProfiles } from '../../actions/profile';
 import { useTheme } from "../../ThemeContext";
+import BodyData from './BodyData';
 
-const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, getCurrentProfile, profile: {profile}
+
+const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, getCurrentProfile, getProfiles, profile: {profile, profiles}
 }) => {
-
   useEffect(() => {
-    getCurrentProfile();
-  }, [getCurrentProfile]);
+    const compDidMountFunc = () => {
+      getCurrentProfile();
+      getProfiles();
+    }
+    compDidMountFunc();
+  }, [getCurrentProfile, getProfiles]);
 
   const themeState = useTheme();
 
@@ -77,7 +82,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, getCurrentPr
         </span>
         <span style={{ color: !themeState.dark ? "slateblue" : "#ffc" }}>☾</span>
       </div>
-
+            <BodyData />
       <h1 className='devconnect'>
         <Link to='/'>
           <i className='fa fa-code' /> DevConnector
@@ -105,5 +110,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logout, getCurrentProfile }
+  { logout, getCurrentProfile, getProfiles }
 )(Navbar);
