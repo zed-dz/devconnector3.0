@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
@@ -9,6 +9,17 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
     getProfiles();
   }, [getProfiles]);
+
+  const [Search, setSearch] = useState({
+    search: ''
+  });
+
+  const { search } = Search;
+
+  let filteredProfiles = profiles.filter(profile => profile.user.name.toLowerCase().indexOf(search.toLowerCase()) !== -1);
+
+const updateSearch = event =>
+      setSearch({ ...Search, search: event.target.value.substr(0, 30) });
 
   return (
     <Fragment>
@@ -21,7 +32,21 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
               <i className='fa fa-connectdevelop' /> Browse and connect with
               developers
             </p>
-            <div className='profiles'>
+
+                <div className="search__container">
+                    <p className="search__title">
+                        search profiles
+                    </p>
+             <input type='text' onChange={updateSearch.bind(this)} value={search} className="search__input" placeholder="search profiles" />
+                </div>
+              <div className='profiles'>
+                  {filteredProfiles.map(profile => (
+                    <ProfileItem key={profile._id} profile={profile} />
+                  ))
+                }
+              </div>
+
+            <div className='hidden'>
               {profiles.length > 0 ? (
                 profiles.map(profile => (
                   <ProfileItem key={profile._id} profile={profile} />

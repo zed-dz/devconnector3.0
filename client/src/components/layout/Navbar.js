@@ -1,28 +1,17 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
-import { getCurrentProfile } from '../../actions/profile';
-import { getProfiles } from '../../actions/profile';
 import { useTheme } from "../../ThemeContext";
-import BodyData from './BodyData';
 
+const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, profile: { profile } }) => {
 
-const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, getCurrentProfile, getProfiles, profile: {profile, profiles}
-}) => {
-  useEffect(() => {
-    const compDidMountFunc = () => {
-      getCurrentProfile();
-      getProfiles();
-    }
-    compDidMountFunc();
-  }, [getCurrentProfile, getProfiles]);
 
   const themeState = useTheme();
 
-  // let userId = 'me'
-  // if(isAuthenticated) userId = user._id
+  let userId = '#!';
+  if(isAuthenticated) userId = 'me';
 
   const authLinks = (
     <ul>
@@ -30,9 +19,9 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, getCurrentPr
         <Link to='/profiles'> Developers</Link>
       </li>
         <li>
-      {/* <Link to={`/profile/${userId}`}>
+      <Link to={`/profile/${userId}`}>
        View Profile
-      </Link> */}
+      </Link>
        </li>
       <li>
         <Link to='/posts'>Posts</Link>
@@ -65,7 +54,6 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, getCurrentPr
       </li>
     </ul>
   );
-
   return (
     // <div>
     <nav className='navbar bg-dark'>
@@ -78,11 +66,10 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, getCurrentPr
               className="checkbox"
               type="checkbox" />
             <label htmlFor="checkbox" />
-            {/* {themeState.dark ? "Switch to Light Mode" : "Switch to Dark Mode"} */}
         </span>
         <span style={{ color: !themeState.dark ? "slateblue" : "#ffc" }}>☾</span>
       </div>
-            <BodyData />
+
       <h1 className='devconnect'>
         <Link to='/'>
           <i className='fa fa-code' /> DevConnector
@@ -93,10 +80,8 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, getCurrentPr
       )}
     </nav>
 
-  // </div>
   );
 };
-
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
@@ -110,5 +95,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logout, getCurrentProfile, getProfiles }
+  { logout }
 )(Navbar);
