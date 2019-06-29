@@ -11,7 +11,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, profile: { p
   const themeState = useTheme();
 
   let userId = '#!';
-  if(isAuthenticated) userId = 'me';
+  if(isAuthenticated) userId = user._id;
 
   const authLinks = (
     <ul>
