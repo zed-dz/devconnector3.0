@@ -23,7 +23,7 @@ auth,
     <h4>Pick a Theme</h4>
    <ul className="sidebar">
       <li>
-    <a href='posts/5d0fc8c7a9f91732743357d0' >web design</a>
+    <a href='posts/5d26d6e6a66a020017610b4a' >web design</a>
       </li>
       <li>
         <Link to='posts/5d0fc72ef9de970a246d6837'>
@@ -36,12 +36,12 @@ auth,
         </a>
       </li>
       <li>
-        <a href='posts/5d0fc8d0a9f91732743357d1'>
+        <a href='posts/5d26d9c0a66a020017610b4d'>
           Quiz
         </a>
       </li>
       <li>
-        <a href='posts/5d0fc9b2a9f91732743357d5'>
+        <a href='posts/5d26d8a6a66a020017610b4c'>
           Coding test
         </a>
       </li>
