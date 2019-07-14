@@ -3,8 +3,8 @@ const request = require('request')
 const config = require('config')
 
 const router = express.Router()
-const auth = require('../../middleware/auth')
 const { check, validationResult } = require('express-validator/check')
+const auth = require('../../middleware/auth')
 
 const Profile = require('../../models/Profile')
 const User = require('../../models/User')
