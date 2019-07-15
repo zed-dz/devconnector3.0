@@ -45,6 +45,7 @@ const EditProfile = ({
       youtube: loading || !profile.social ? '' : profile.social.youtube,
       instagram: loading || !profile.social ? '' : profile.social.instagram
     });
+  // eslint-disable-next-line
   }, [loading, getCurrentProfile]);
 
   const {
@@ -74,7 +75,7 @@ const EditProfile = ({
     <Fragment>
       <h1 className='large text-primary'>Create Your Profile</h1>
       <p className='lead'>
-        <i className='fas fa-user' /> Let's get some information to make your
+        <i className='fa fa-user' /> Let's get some information to make your
         profile stand out
       </p>
       <small>* = required field</small>
