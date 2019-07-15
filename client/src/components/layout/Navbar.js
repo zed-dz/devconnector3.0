@@ -11,7 +11,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, profile: { p
   const themeState = useTheme();
 
   let userId = '#!';
-  if(isAuthenticated) userId = user._id;
+    if(isAuthenticated && user !== null) userId = user._id;
 
   const authLinks = (
     <ul>
@@ -54,6 +54,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout, profile: { p
       </li>
     </ul>
   );
+
   return (
     // <div>
     <nav className='navbar bg-dark'>
